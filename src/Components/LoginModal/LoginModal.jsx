@@ -8,6 +8,10 @@ import { closeIcon } from "../../Assets/SVGs/SvgIcons";
 
 export default function LoginModal({ isOpen, onClose, selectedRole, setSelectedRole }) {
   const [step, setStep] = useState(1);
+  const [generatedOTP, setGeneratedOTP] = useState("");
+  const [selectedCountryCode, setSelectedCountryCode] = useState("+92");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
   if (!isOpen) return null;
   const handleNext = () => setStep((prev) => prev + 1);
 
@@ -19,11 +23,11 @@ export default function LoginModal({ isOpen, onClose, selectedRole, setSelectedR
         </button>
 
         {step === 1 && (
-          <Login handleNext={handleNext}/>
+          <Login handleNext={handleNext} setGeneratedOTP={setGeneratedOTP} phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} setSelectedCountryCode={setSelectedCountryCode}/>
         )}
 
         {step === 2 && (
-          <OTP handleNext={handleNext}/>
+          <OTP handleNext={handleNext} generatedOTP={generatedOTP} phoneNumber={phoneNumber} selectedCountryCode={selectedCountryCode}/>
         )}
 
         {step === 3 && (

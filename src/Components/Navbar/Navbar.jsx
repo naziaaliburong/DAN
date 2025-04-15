@@ -14,6 +14,7 @@ const Navbar = ({ onLoginClick }) => {
     index===0 && navigate("/");
     index===1 && navigate("/marketplace");
     index===2 && navigate("/chat");
+    index===3 && navigate("/mytrade");
   }
 
   return (

@@ -1,16 +1,12 @@
 import "./App.css";
 import {Routes, Route} from 'react-router-dom';
 import Navbar from "./Components/Navbar/Navbar";
-import CreateSearchTrade from "./Components/CreateSearchTrade/CreateSearchTrade";
-import ImageCarousel from "./Components/ImageCarousal/ImageCarousal";
-import AuctionList from "./Components/AuctionList/AuctionList";
-import Faq from "./Components/FAQ/Faq";
-import GetTheApp from "./Components/GetTheApp/GetTheApp";
-import Footer from "./Components/Footer/Footer";
-import LoginModal from "./Components/LoginModal/LoginModal";
-import CommoditiesModal from "./Components/CommoditiesModal/CommoditiesModal";
-import Buy from "./Components/Buy/Buy"; 
-import Chat from "./Components/Chat/Chat";
+import Home from "./Pages/Home";
+import MarketPlace from "./Pages/MarketPlace";
+import CreateTrade from "./Pages/CreateTrade";
+import BuyPage from "./Pages/BuyPage";
+import ChatPage from "./Pages/ChatPage";
+import TradePage from "./Pages/TradePage";
 import { useState } from "react";
 
 function App() {
@@ -18,50 +14,40 @@ function App() {
   const [selectedRole, setSelectedRole] = useState(null);
 
   return (
+    <>
+    <Navbar onLoginClick={() => setIsLoginOpen(true)}/>
     <Routes>
           <Route path='/' element={
-              <div>
-                <Navbar onLoginClick={() => setIsLoginOpen(true)}/>
-                <CreateSearchTrade />
-                <ImageCarousel />
-                <AuctionList />
-                <Faq />
-                <GetTheApp />
-                <Footer />
-                <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} selectedRole={selectedRole} setSelectedRole={setSelectedRole}/>
-              </div>
+              <Home 
+              isLoginOpen={isLoginOpen}
+              setIsLoginOpen={setIsLoginOpen}
+              selectedRole={selectedRole}
+              setSelectedRole={setSelectedRole}
+              />
           }
           />
           <Route path='/marketplace' element={
-              <div>
-                <Navbar onLoginClick={() => setIsLoginOpen(true)}/>
-                <CreateSearchTrade />
-                <AuctionList />
-              </div>
+              <MarketPlace />
           }
           />
            <Route path='/createtrade' element={
-              <div>
-                <Navbar onLoginClick={() => setIsLoginOpen(true)}/>
-                  <CommoditiesModal />
-              </div>
+              <CreateTrade />
           }
           />
           <Route path='/buy/:id' element={
-              <div>
-                <Navbar onLoginClick={() => setIsLoginOpen(true)}/>
-                <Buy selectedRole={selectedRole}/>
-              </div>
+              <BuyPage selectedRole={selectedRole} />
           }
           />
           <Route path='/chat' element={
-              <div>
-                <Navbar onLoginClick={() => setIsLoginOpen(true)}/>
-                <Chat />
-              </div>
+              <ChatPage />
+          }
+          />
+          <Route path='/mytrade' element={
+              <TradePage />
           }
           />
     </Routes>
+    </>
   );
 }
 
